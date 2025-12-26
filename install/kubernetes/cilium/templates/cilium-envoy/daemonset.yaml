@@ -130,6 +130,11 @@ spec:
           successThreshold: 1
           failureThreshold: {{ .Values.envoy.readinessProbe.failureThreshold }}
           timeoutSeconds: 5
+        ports:
+        - name: health
+          containerPort: {{ .Values.envoy.healthPort }}
+          hostPort: {{ .Values.envoy.healthPort }}
+          protocol: TCP
         env:
         - name: K8S_NODE_NAME
           valueFrom:
